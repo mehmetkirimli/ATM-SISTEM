@@ -1,0 +1,66 @@
+import javax.swing.*;
+import java.util.Scanner;
+
+public class atm {
+    public static void main(String[] args) {
+        String username, passWord;
+        Scanner bjk = new Scanner(System.in);
+        int right = 3;
+        int Select = 0;
+        int bakiye = 2500;
+        int miktar;
+
+        while (right > 0) {
+
+            System.out.println("Kullanici adiniz : ");
+            username = bjk.nextLine();
+            System.out.println("Sifreniz : ");
+            passWord = bjk.nextLine();
+
+            if (username.equals("memo") && passWord.equals("hopa")) {
+                System.out.println("MHK BANKASINA HOSGELINIZ :");
+                while (Select != 4) {
+                    System.out.println(
+                            "1-Para Cekme : \n" +
+                                    "2-Para Yukleme : \n" +
+                                    "3-Bakiye Sorgulama : \n" +
+                                    "4-Cikis Yap : ");
+                    System.out.println("Yapmak istediginiz islemi secin : ");
+                    Select = bjk.nextInt();
+
+                    if (Select == 1) {
+                        System.out.println("Cekmek istediginiz miktar : ");
+                        miktar = bjk.nextInt();
+                        if (bakiye > miktar) {
+                            System.out.println("Para cekme islemi basarili :) ");
+                            bakiye -= miktar;
+                        } else {
+                            System.out.println("Yetersiz bakiye :( ");
+                        }
+                    } else if (Select == 2) {
+                        System.out.println("Yatirmak istediginiz miktar : ");
+                        miktar = bjk.nextInt();
+                        bakiye = bakiye + miktar;
+                        System.out.println("Para yatirma islemi basarili :) ");
+
+                    } else if (Select == 3) {
+                        System.out.println("Guncel bakiyeniz : " + bakiye);
+
+                    } else if (Select == 4) {
+                        System.out.println("Gorusmek uzere <3");
+
+                    }
+
+
+                }
+                break;
+
+            } else {
+                System.out.println("Hatali kullanici adi veya sifre , tekrar deneyiniz : " + "Deneme hakkiniz : " + --right);
+                if (right == 0) {
+                    System.out.println("3 kere hatali tuslama yaptiniz , sistem bloke oldu .");
+                }
+            }
+        }
+    }
+}
